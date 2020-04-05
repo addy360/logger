@@ -1,0 +1,32 @@
+{
+	"logs":[
+		{
+			"id":1,
+			"message":"Changed Server 025 in server room",
+			"attention":false,
+			"date":"03,03,2020",
+			"technician":"Jane Doe"
+		},
+		{
+			"id":2,
+			"message":"Changed Server 030 in server room",
+			"attention":false,
+			"date":"03,03,2020",
+			"technician":"John Doe"
+		}
+		
+	],
+	"technicians":[
+		{
+			"id":1,
+			"fname":"John",
+			"lname":"Doe"
+		},
+		{
+			"id":2,
+			"fname":"Jane",
+			"lname":"Doe"
+		}
+		
+	]
+}
