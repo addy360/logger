@@ -5,7 +5,7 @@ const LogItem = props =>{
 	return (
 		<li className="collection-item">
 			<div>
-				<a href="#modalEdit" className={ `modal-trigger ${ props.log.attention ? 'red-text' : 'purple-text' } darken-1` }>
+				<a href="#editModal" className={ `modal-trigger ${ props.log.attention ? 'red-text' : 'purple-text' } darken-1` }>
 					{ props.log.message } 
 				</a>
 				<br/>
