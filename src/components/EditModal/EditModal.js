@@ -1,15 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import { connect } from 'react-redux'
+import { UpdateLog } from '../../Store/actions/actionCreators'
+import SelectOptions from '../Tech/Select/SelectOptions'
+
 
 const EditModal = props =>{
 	const [message, setMessage] = useState('')
 	const [tech, setTech] = useState('')
 	const [attention, setAttention] = useState(false)
-
+	useEffect(()=>{
+		if(props.current){
+			const { message, attention, technician } = props.current
+			setMessage(message)
+			setTech(technician)
+			setAttention(attention)
+		}
+	// eslint-disable-next-line
+	},[props.current])
 	const onSubmit = e =>{
 		if(message === "") return M.toast({html: 'Message can not be empty!'});
-		console.log(message,tech,attention)
-
+		const newLog = {
+			id:props.current.id,
+			message, attention, technician:tech,
+			date: new Date()
+		}
+		props.UpdateLog(newLog)
+		M.toast({html:"Log updated successfully!"})
 		setAttention(false)
 		setMessage('')
 		setTech('')
@@ -22,18 +39,14 @@ const EditModal = props =>{
 			      <div className="row">
 			        <div className="input-field col s12">
 			          <input id="msg" value={message} onChange={e => setMessage(e.target.value)} name="Message" type="text" className="validate"/>
-			          <label htmlFor="msg">Message</label>
 			        </div>
 			      </div>
 			      <div className="row">
 					  <div className="input-field col s12">
-					    <select  value={tech} onChange={e => setTech(e.target.value)} name="Tech">
+					    <select  value={tech} onChange={e => setTech(e.target.value)} name="Tech" className="browser-default">
 					      <option   disabled value = "">Choose your option</option>
-					      <option value = "Option 1">Option 1</option>
-					      <option value = "Option 2">Option 2</option>
-					      <option value = "Option 3">Option 3</option>
+					      <SelectOptions/>
 					    </select>
-					    <label>Technicians</label>
 					  </div>
 			      </div>
 			      <div className="row">
@@ -55,4 +68,9 @@ const EditModal = props =>{
 	)
 }
 
-export default EditModal
+const mapStateToProps = state=>{
+	return {
+		current:state.log.current
+	}
+}
+export default connect(mapStateToProps,{UpdateLog})(EditModal)

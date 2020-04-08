@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import { addTech } from '../../../Store/actions/techsActionCreator'
+import { connect } from 'react-redux'
 
 const TechAddModal = props =>{
 	const [fname, setFname] = useState('')
@@ -7,7 +9,11 @@ const TechAddModal = props =>{
 	
 	const onSubmit = e =>{
 		if(fname === "" && lname === "") return M.toast({html: 'All fields are required!'});
-		console.log(fname, lname)
+		props.addTech({
+			fname,
+			lname
+		})
+		M.toast({html: `${fname} added successfully!`})
 
 		setFname('')
 		setLname('')
@@ -39,4 +45,4 @@ const TechAddModal = props =>{
 	)
 }
 
-export default TechAddModal
+export default connect(null,{addTech})(TechAddModal)

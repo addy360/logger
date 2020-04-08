@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import M from 'materialize-css/dist/js/materialize.min.js'
+import { connect } from 'react-redux'
+import { addLog } from '../../Store/actions/actionCreators'
+import SelectOptions from '../Tech/Select/SelectOptions'
 
 const AddModal = props =>{
 	const [message, setMessage] = useState('')
@@ -9,6 +12,13 @@ const AddModal = props =>{
 	const onSubmit = e =>{
 		if(message === "") return M.toast({html: 'Message can not be empty!'});
 		console.log(message,tech,attention)
+		const newLog = {
+			message, attention, technician:tech,
+			date: new Date()
+		}
+		props.addLog(newLog)
+
+		M.toast({html:"A Log added successfully"})
 
 		setAttention(false)
 		setMessage('')
@@ -26,13 +36,10 @@ const AddModal = props =>{
 			      </div>
 			      <div className="row">
 					  <div className="input-field col s12">
-					    <select  value={tech} onChange={e => setTech(e.target.value)} name="Tech">
+					    <select className="browser-default"  value={tech} onChange={e => setTech(e.target.value)} name="Tech">
 					      <option   disabled value = "">Choose your option</option>
-					      <option value = "Option 1">Option 1</option>
-					      <option value = "Option 2">Option 2</option>
-					      <option value = "Option 3">Option 3</option>
+					      <SelectOptions/>
 					    </select>
-					    <label>Technicians</label>
 					  </div>
 			      </div>
 			      <div className="row">
@@ -54,4 +61,5 @@ const AddModal = props =>{
 	)
 }
 
-export default AddModal
+
+export default connect(null,{addLog})(AddModal)

@@ -1,32 +1,49 @@
 {
-	"logs":[
-		{
-			"id":1,
-			"message":"Changed Server 025 in server room",
-			"attention":false,
-			"date":"03,03,2020",
-			"technician":"Jane Doe"
-		},
-		{
-			"id":2,
-			"message":"Changed Server 030 in server room",
-			"attention":false,
-			"date":"03,03,2020",
-			"technician":"John Doe"
-		}
-		
-	],
-	"technicians":[
-		{
-			"id":1,
-			"fname":"John",
-			"lname":"Doe"
-		},
-		{
-			"id":2,
-			"fname":"Jane",
-			"lname":"Doe"
-		}
-		
-	]
+  "logs": [
+    {
+      "id": 1,
+      "message": "one hell of a one",
+      "attention": false,
+      "technician": "Jane Doe",
+      "date": "2020-04-08T10:05:43.914Z"
+    },
+    {
+      "id": 2,
+      "message": "search log",
+      "attention": false,
+      "technician": "Jane Doe",
+      "date": "2020-04-08T10:05:53.778Z"
+    },
+    {
+      "id": 3,
+      "message": "select testing",
+      "attention": false,
+      "technician": "John Doe",
+      "date": "2020-04-08T10:06:22.366Z"
+    },
+    {
+      "id": 4,
+      "message": "test select component",
+      "attention": true,
+      "technician": "turupa james",
+      "date": "2020-04-08T10:06:33.096Z"
+    }
+  ],
+  "technicians": [
+    {
+      "id": 1,
+      "fname": "John",
+      "lname": "Doe"
+    },
+    {
+      "id": 2,
+      "fname": "Jane",
+      "lname": "Doe"
+    },
+    {
+      "fname": "James",
+      "lname": "Bond",
+      "id": 4
+    }
+  ]
 }
